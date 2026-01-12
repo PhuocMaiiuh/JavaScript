@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>baitap04</title>
+</head>
+<body>
+    <input type="text" id="" playholder="Nhap tien">
+    <input type="text" id="TienTip" placeholder="Tien tip" readonly>
+    <button id="click">Calculate</button>
+    <script>
+        var Tien = 0;
+        var TienTip;
+        var button = document.getElementById("click");
+
+        button.onclick = () => {
+            var input = parseFloat(document.querySelector('input').value);
+            if(Tien >= 50 && Tien <= 300) {
+                TienTip = input * 0.15;
+            } else {
+                TienTip = input * 0.20;
+            }
+            document.getElementById("TienTip").value = TienTip.toFixed(2);
+            console.log("Tip: " + TienTip.toFixed(2));
+            console.log("(Bill and tip): " + (input + TienTip).toFixed(2));
+        }
+    </script>
+</body>
+</html>
