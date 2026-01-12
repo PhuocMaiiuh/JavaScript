@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>baitap01</title>
+</head>
+<body>
+
+    <input type="text" id="mass" >
+    <input type="text" id="height" >
+    <button id="click">click</button>
+    <script>
+        var BMI = 0;
+        var mass;
+        var height;
+        var button = document.getElementById("click");
+
+        button.onclick = () => {
+            mass = document.getElementById("mass").value;
+            height = document.getElementById("height").value;
+            BMI = mass / (height * height);
+            console.log(BMI);
+        }
+
+      
+
+    </script>
+</body>
+</html>
