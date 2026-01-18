@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>baitap1</title>
+  <style>
+    .country {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      border: 1px solid #ddd;
+      padding: 12px;
+      margin: 12px 0;
+      max-width: 600px;
+    }
+    .country img { width: 90px; height: auto; }
+  </style>
+</head>
+<body>
+  <h1>whereAmI() demo</h1>
+  <div id="results"></div>
+
+  <script>
+    const resultsContainer = document.getElementById('results');
+
+    function renderCountry(data) {
+      const html = `
+        <div class="country">
+          <img src="${data.flags?.svg || data.flags?.png}" alt="flag" />
+          <div>
+            <h3>${data.name?.common}</h3>
+            <p>${data.region} • ${(+data.population).toLocaleString()} people</p>
+            <p>Language: ${Object.values(data.languages || {}).join(', ')}</p>
+            <p>Currency: ${Object.values(data.currencies || {}).map(c=>c.name).join(', ')}</p>
+          </div>
+        </div>`;
+      resultsContainer.insertAdjacentHTML('beforeend', html);
+    }
+
+    function renderError(msg) {
+      const el = document.createElement('p');
+      el.style.color = 'red';
+      el.textContent = msg;
+      resultsContainer.appendChild(el);
+    }
+
+    function whereAmI(lat, lng) {
+
+      fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+        .then(res => {
+          if (!res.ok) throw new Error(`Geocoding error (status ${res.status})`);
+          return res.json();
+        })
+        .then(data => {
+
+          if (data.error) throw new Error(data.error.description || 'Geocoding failed');
+          console.log('Geocoding data:', data);
+          const city = data.city || data.region || 'Unknown city';
+          const country = data.country;
+          if (!country) throw new Error('Could not determine country from coordinates');
+          console.log(`You are in ${city}, ${country}`);
+
+          return fetch(`https://restcountries.com/v3.1/name/${country}`);
+        })
+        .then(res => {
+          if (!res.ok) throw new Error(`Country not found (${res.status})`);
+          return res.json();
+        })
+        .then(data => {
+          renderCountry(data[0]);
+        })
+        .catch(err => {
+          console.error(err.message);
+          renderError(err.message);
+        });
+    }
+    const coords = [
+      [52.508, 13.381],
+      [19.037, 72.873],
+      [-33.933, 18.474]
+    ];
+
+    coords.forEach((c, i) => setTimeout(() => whereAmI(c[0], c[1]), i * 600));
+  </script>
+</body>
+</html>

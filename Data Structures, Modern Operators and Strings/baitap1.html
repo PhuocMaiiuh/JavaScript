@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Football Betting Challenge</title>
+</head>
+<body>
+	<h1>Mở console của trình duyệt để xem kết quả.</h1>
+
+	<script>
+		const game = {
+			team1: 'Bayern Munich',
+			team2: 'Borrussia Dortmund',
+			players: [
+				[
+					'Neuer',
+					'Pavard',
+					'Martinez',
+					'Alaba',
+					'Davies',
+					'Kimmich',
+					'Goretzka',
+					'Coman',
+					'Muller',
+					'Gnarby',
+					'Lewandowski',
+				],
+				[
+					'Burki',
+					'Schulz',
+					'Hummels',
+					'Akanji',
+					'Hakimi',
+					'Weigl',
+					'Witsel',
+					'Hazard',
+					'Brandt',
+					'Sancho',
+					'Gotze',
+				],
+			],
+			score: '4:0',
+			scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+			date: 'Nov 9th, 2037',
+			odds: {
+				team1: 1.33,
+				x: 3.25,
+				team2: 6.5,
+			},
+		};
+
+	
+		const [players1, players2] = game.players;
+
+		const [gk, ...fieldPlayers] = players1;
+
+	
+		const allPlayers = [...players1, ...players2];
+
+		const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+
+		const {
+			odds: { team1, x: draw, team2 },
+		} = game;
+
+	
+		function printGoals(...players) {
+			for (const player of players) console.log(player);
+			console.log(`${players.length} goals were scored`);
+		}
+
+	
+		team1 < team2 && console.log(`${game.team1} is more likely to win`);
+		team1 > team2 && console.log(`${game.team2} is more likely to win`);
+
+
+		console.log('Players1:', players1);
+		console.log('Players2:', players2);
+		console.log('Goalkeeper:', gk);
+		console.log('Field players:', fieldPlayers);
+		console.log('All players:', allPlayers);
+		console.log('Players1 Final:', players1Final);
+		console.log('Odds - team1:', team1, 'draw:', draw, 'team2:', team2);
+
+		// Test data for printGoals
+		printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
+		printGoals(...game.scored);
+	</script>
+</body>
+</html>
+

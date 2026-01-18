@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>baitap2</title>
+</head>
+<body>
+        <h1>Calc Average Human Age</h1>
+        <div id="results"></div>
+
+        <script>
+            const calcAverageHumanAge = ages =>
+                ages
+                    .map(age => (age <= 2 ? 2 * age : 16 + age * 4))
+                    .filter(h => h >= 18)
+                    .reduce((avg, h, _, arr) => avg + h / arr.length, 0);
+
+            const data1 = [5, 2, 4, 1, 15, 8, 3];
+            const data2 = [16, 6, 10, 5, 6, 1, 4];
+
+            const r1 = calcAverageHumanAge(data1);
+            const r2 = calcAverageHumanAge(data2);
+
+            document.getElementById('results').innerHTML =
+                `<p>Data 1 — average human age: <strong>${r1.toFixed(2)}</strong></p>` +
+                `<p>Data 2 — average human age: <strong>${r2.toFixed(2)}</strong></p>`;
+
+            console.log('Data 1 — average human age:', r1.toFixed(2));
+            console.log('Data 2 — average human age:', r2.toFixed(2));
+        </script>
+</body>
+</html>

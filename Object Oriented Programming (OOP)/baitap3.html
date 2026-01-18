@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>baitap3</title>
+</head>
+<body>
+	<h1>EV Constructor Function - Exercise</h1>
+	<p>Mở console để xem kết quả.</p>
+
+	<script>
+	
+		function Car(make, speed) {
+			this.make = make;
+			this.speed = speed; // km/h
+		}
+
+		Car.prototype.accelerate = function () {
+			this.speed += 10;
+			console.log(`${this.make} is going at ${this.speed} km/h`);
+		};
+
+		Car.prototype.brake = function () {
+			this.speed -= 5;
+			console.log(`${this.make} is going at ${this.speed} km/h`);
+		};
+
+		function EV(make, speed, charge) {
+			Car.call(this, make, speed);
+			this.charge = charge; // %
+		}
+
+
+		EV.prototype = Object.create(Car.prototype);
+		EV.prototype.constructor = EV;
+
+		EV.prototype.chargeBattery = function (chargeTo) {
+			this.charge = chargeTo;
+			console.log(`${this.make} battery charged to ${this.charge}%`);
+		};
+
+
+		EV.prototype.accelerate = function () {
+			this.speed += 20;
+			this.charge -= 1;
+			console.log(
+				`${this.make} going at ${this.speed} km/h, with a charge of ${this.charge}%`
+			);
+		};
+
+		
+		const tesla = new EV('Tesla', 120, 23);
+
+		console.log('Initial:', tesla);
+
+		tesla.accelerate(); 
+		tesla.brake();   
+		tesla.chargeBattery(90); 
+		tesla.accelerate(); 
+	</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <h1>Mở console của trình duyệt để xem kết quả.</h1>
+        <textarea id="input" rows="10" cols="40" placeholder="paste variables here, one per line"></textarea>
+        <br />
+        <button id="convert">Convert</button>
+
+        <script>
+            document.getElementById('convert').addEventListener('click', function () {
+                const text = document.getElementById('input').value;
+                const lines = text.split('\n');
+
+                lines.forEach((line, idx) => {
+                    const trimmed = line.trim().toLowerCase();
+                    if (!trimmed) return;
+
+                    const [first = '', second = ''] = trimmed.split('_').map(s => s.trim());
+                    const camel = first + (second ? second[0].toUpperCase() + second.slice(1) : '');
+
+                    const checks = '✅'.repeat(idx + 1);
+                    console.log(camel.padEnd(20, ' ') + checks);
+                });
+            });
+        </script>
+</body>
+</html>

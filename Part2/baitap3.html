@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>baitap03</title>
+</head>
+<body>
+  
+    <script>
+        const personCalcBMI = function() {
+                this.bmi = this.mass / (this.height * this.height);
+            return this.bmi;
+        };
+
+        const mark = {
+            fullName: 'Mark Miller',
+            mass: 78,
+            height: 1.69,
+            calcBMI: personCalcBMI
+        };
+
+        const john = {
+            fullName: 'John Smith',
+            mass: 92,
+            height: 1.95,
+            calcBMI: personCalcBMI
+        };
+
+        mark.calcBMI();
+        john.calcBMI();
+
+        const markBMI = mark.bmi;
+        const johnBMI = john.bmi;
+
+        if (markBMI > johnBMI) {
+            console.log(`${mark.fullName}'s BMI (${markBMI.toFixed(1)}) is higher than ${john.fullName}'s (${johnBMI.toFixed(1)})!`);
+        } else if (johnBMI > markBMI) {
+            console.log(`${john.fullName}'s BMI (${johnBMI.toFixed(1)}) is higher than ${mark.fullName}'s (${markBMI.toFixed(1)})!`);
+        } else {
+            console.log(`${mark.fullName} and ${john.fullName} have the same BMI (${markBMI.toFixed(1)})!`);
+        }
+    </script>
+</body>
+</html>

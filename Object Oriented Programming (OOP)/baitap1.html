@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>baitap01</title>
+</head>
+<body>
+	<h1>OOP - Car Constructor Exercise</h1>
+	<p>Mở console để xem kết quả.</p>
+
+	<script>
+		
+		function Car(make, speed) {
+			this.make = make;
+			this.speed = speed; 
+		}
+
+	
+		Car.prototype.accelerate = function () {
+			this.speed += 10;
+			console.log(this.make + ' is going at ' + this.speed + ' km/h');
+		};
+
+
+		Car.prototype.brake = function () {
+			this.speed -= 5;
+			console.log(this.make + ' is going at ' + this.speed + ' km/h');
+		};
+
+
+		var car1 = new Car('BMW', 120);
+		var car2 = new Car('Mercedes', 95);
+
+		
+		console.log('--- Testing car1 ---');
+		car1.accelerate(); // 130
+		car1.accelerate(); // 140
+		car1.brake();      // 135
+
+		console.log('--- Testing car2 ---');
+		car2.brake();      // 90
+		car2.accelerate(); // 100
+		car2.brake();      // 95
+	</script>
+</body>
+</html>

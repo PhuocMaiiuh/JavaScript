@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>baitap01</title>
+</head>
+<body>
+    <h1>Dự báo nhiệt độ</h1>
+    <p>Mở console của trình duyệt để xem kết quả.</p>
+    <script>
+      
+        function printForecast(arr) {
+            let str = '... ';
+            for (let i = 0; i < arr.length; i++) {
+                str += `${arr[i]}°C trong ${i + 1} ngày, `;
+            }
+            console.log(str);
+        }
+
+
+        const data1 = [17, 21, 23];
+        const data2 = [12, 5, -5, 0, 4];
+
+
+        printForecast(data1);
+        printForecast(data2);
+    </script>
+</body>
+</html>

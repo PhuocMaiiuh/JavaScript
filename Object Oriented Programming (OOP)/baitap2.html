@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>baitap02</title>
+</head>
+<body>
+	<h1>CarCl ES6 Class - Exercise</h1>
+	<p>Mở console để xem kết quả.</p>
+
+	<script>
+		class CarCl {
+			constructor(make, speed) {
+				this.make = make;
+				this.speed = speed; 
+			}
+
+			accelerate() {
+				this.speed += 10;
+				console.log(`${this.make} is going at ${this.speed} km/h`);
+				return this;
+			}
+
+			brake() {
+				this.speed -= 5;
+				console.log(`${this.make} is going at ${this.speed} km/h`);
+				return this;
+			}
+
+			get speedUS() {
+				return this.speed / 1.6;
+			}
+
+			set speedUS(speed) {
+				this.speed = speed * 1.6;
+			}
+		}
+
+		// Test data: Ford going at 120 km/h
+		const ford = new CarCl('Ford', 120);
+
+		console.log('Initial (km/h):', ford.speed);
+		console.log('Initial (mi/h):', ford.speedUS);
+
+		ford.accelerate(); // +10 -> 130
+		ford.brake();      // -5  -> 125
+
+		
+		ford.speedUS = 50; // sets to 50 * 1.6 = 80 km/h
+		console.log('After setting speedUS = 50 -> (km/h):', ford.speed);
+		console.log('After setting (mi/h):', ford.speedUS);
+	</script>
+</body>
+</html>

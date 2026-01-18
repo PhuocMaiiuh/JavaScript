@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>baitap02</title>
+</head>
+<body>
+	<h1>Tip Calculator</h1>
+
+	<label>Nhập hóa đơn: <input type="number" id="bill" placeholder="Nhập tiền" step="any"></label>
+	<br>
+	<label>Tiền tip: <input type="text" id="TienTip" placeholder="Tien tip" readonly></label>
+	<br>
+	<label>Tổng (bill + tip): <input type="text" id="Total" placeholder="Tổng" readonly></label>
+	<br>
+	<button id="click">Calculate</button>
+	
+
+	<script>
+		const calcTip = bill => (bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2);
+
+		const button = document.getElementById('click');
+		button.onclick = () => {
+			const input = parseFloat(document.getElementById('bill').value);
+			const tipField = document.getElementById('TienTip');
+			const totalField = document.getElementById('Total');
+
+			const tip = calcTip(input);
+			const total = input + tip;
+
+			tipField.value = tip.toFixed(2);
+			totalField.value = total.toFixed(2);
+
+			console.log('Bill:', input.toFixed(2));
+			console.log('Tip:', tip.toFixed(2));
+			console.log('Total (bill + tip):', total.toFixed(2));
+		};
+		console.log('Test calcTip(100):', calcTip(100).toFixed(2));
+		const bills = [125, 555, 44];
+		const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+
+		
+		const totals = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
+
+
+		console.log('Bills:', bills);
+		console.log('Tips:', tips.map(t => Number(t.toFixed(2))));
+		console.log('Totals:', totals.map(t => Number(t.toFixed(2))));
+	</script>
+</body>
+</html>
